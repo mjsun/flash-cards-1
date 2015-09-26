@@ -15,13 +15,14 @@ app.controller('MainController', function($scope, FlashCardsFactory, ScoreFactor
 		$scope.getCards();
 
     $scope.getCategoryCards = function(category) {
-    	  FlashCardsFactory.getCategoryCards(category)
-        .then(function(res) {
-            $scope.flashCards = res;
-            $scope.currentCategory = category;
-        }, function(err) {
-            console.log(err);
-        });
+    	 // FlashCardsFactory.getCategoryCards(category)
+        //.then(function(res) {
+        //    $scope.flashCards = res;
+        //    $scope.currentCategory = category;
+        //}, function(err) {
+        //    console.log(err);
+        //});
+        $scope.currentCategory = category;
     }
 
     $scope.resetCategory = function() {
@@ -38,17 +39,4 @@ app.controller('MainController', function($scope, FlashCardsFactory, ScoreFactor
 
     $scope.currentCategory = "";
 
-    $scope.answerQuestion = function(answer, flashCard) {
-        if (!flashCard.answered) {
-            flashCard.answered = true;
-            
-            if (answer.correct)
-            	ScoreFactory.setCorrect();
-            else
-							ScoreFactory.setIncorrect();
-
-            flashCard.answeredCorrectly = answer.correct;
-        }
-
-    }
 });

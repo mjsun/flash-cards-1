@@ -29,3 +29,15 @@ app.factory('ScoreFactory', function () {
         incorrect: 0
     };
 });
+
+
+app.filter('getCategory', function(){
+    return function(input, category){
+        if(category){
+            return input.filter(function(card){
+                return card.category === category;
+            });
+        }
+        return input;
+    };
+});
