@@ -1,11 +1,14 @@
 app.controller('MainController', function($scope, FlashCardsFactory, ScoreFactory) {
+    $scope.loading = true;
 
     $scope.getCards = function() {
- 			FlashCardsFactory.getFlashCards()
+        FlashCardsFactory.getFlashCards()
         .then(function(res) {
             $scope.flashCards = res;
+           $scope.loading = false;
         }, function(err) {
             console.log(err);
+                $scope.loading = false;
         });
     };
 
