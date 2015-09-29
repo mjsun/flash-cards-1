@@ -10,7 +10,9 @@
   outline: none; }
   .category-button.active {
     background: gainsboro; }
-
+.shadow {
+  box-shadow: 3px 4px 5px 1px rgb(107, 107, 107);
+}
 .flash-card {
   width: 60%;
   height: 400px;
@@ -19,7 +21,7 @@
   border: 1px solid black;
   font-family: Helvetica;
   padding: 50px;
-  box-shadow: 3px 4px 5px 1px #6b6b6b; }
+  }
   .flash-card h1 {
     font-size: 40px;
     text-align: center;
