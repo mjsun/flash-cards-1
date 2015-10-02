@@ -1,0 +1,7 @@
+<div class="btn-group" dropdown keyboard-nav>
+    {{openState}}
+    <button type="button" class="btn btn-primary btn-lg" ng-click="changeState()" dropdown-toggle>{{currentCategory}} <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li ng-repeat="category in categories"><a ng-click="getCategoryCards(category)">{{ category}}</a></li>
+    </ul>
+</div>

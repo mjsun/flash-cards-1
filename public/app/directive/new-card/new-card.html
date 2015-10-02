@@ -1,0 +1,35 @@
+<button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">Toggle collapse</button>
+<div collapse="isCollapsed">
+    <form  name="newCardForm">
+        <div class="form-group" ng-class="{'has-error': newCardForm.question.$invalid}">
+            <label for="question">Question:</label>
+            <input required ng-minlength="15"
+                   type="text"
+                   class="form-control"
+                   id="question"
+                   name="question"
+                   ng-model="newCard.question">
+            <div class="alert alert-danger" ng-show="newCardForm.question.$dirty && newCardForm.question.$error.required">Question is a required field</div>
+            <div class="alert alert-danger" ng-show="newCardForm.question.$dirty && newCardForm.question.$error.minlength">Question is too short</div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': newCardForm.category.$invalid}">
+            <label for="category">Category:</label>
+            <input required type="text" class="form-control" id="category" name="category" ng-model="newCard.category">
+            <div class="alert alert-danger" ng-show="newCardForm.category.$dirty && newCardForm.category.$error.required">Question is a required field</div>
+        </div>
+        <div class="form-group">
+            <label >Answers:</label>
+            <div ng-repeat="answer in newCard.answers" ng-class="{'has-error': answerForm.answer.$invalid}">
+                <ng-form name="answerForm" class="input-group">
+                    <input type="text" ng-maxlength="40" name="answer" class="form-control" ng-model="answer.text">
+                    <span class="input-group-addon">
+                        <input type="checkbox" ng-model="answer.correct">
+                    </span>
+                </ng-form>
+                <div class="alert alert-danger" ng-show="answerForm.answer.$dirty && answerForm.answer.$error.maxlength">Answer is too long</div>
+            </div>
+        </div>
+        <button class="btn btn-primary" ng-click="submitForm()" ng-disabled="newCardForm.$invalid === true" >Submit</button>
+    </form>
+</div>
+

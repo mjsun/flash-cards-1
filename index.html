@@ -5,61 +5,56 @@
     <title>Flash Cards</title>
     <!-- We've provided some styles for you, aren't we nice? -->
 
-    <link rel="stylesheet" type="text/css" href="reset.css" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <script src="angular.js"></script>
-    <script src="app.js"></script>
-    <script src="directives/loader/loader.js"></script>
-    <script src="main.controller.js"></script>
-    <script src="newcard.controller.js"></script>
-    <script src="directives/stats/stats.js"></script>
-    <script src="directives/flash-card/flashCard.js"></script>
-    <script src="directives/util/hover.js"></script>
-    <script src="stats.controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script src="vendor/js/angular.js"></script>
+    <script src="vendor/js/angular-animate.js"></script>
+    <script src="vendor/js/ui-bootstrap.min.js"></script>
+
+
+    <script src="app/app.js"></script>
+
+
+    <script src="app/controller/main.controller.js"></script>
+    <script src="app/controller/newcard.controller.js"></script>
+    <script src="app/controller/stats.controller.js"></script>
+
+    <script src="app/directive/loader/loader.js"></script>
+    <script src="app/directive/stats/stats.js"></script>
+    <script src="app/directive/flash-card/flashCard.js"></script>
+    <script src="app/directive/util/hover.js"></script>
+    <script src="app/directive/category/category.js"></script>
+    <script src="app/directive/new-card/new-card.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
+
 </head>
 
 <body class="container" ng-app="flashCards" >
-        <div class="container" style="width: 30%" ng-controller="NewCardController">
-            <form name="newCardForm">
-                <div class="form-group">
-                    <label for="question">Question:</label>
-                    <input required ng-minlength="15" type="text" class="form-control" id="question" name="question" ng-model="newCard.question">
-                </div>
-                <div class="form-group">
-                    <label for="category">Category:</label>
-                    <input required type="text" class="form-control" id="category" name="category" ng-model="newCard.category">
-                </div>
-                <div class="form-group">
-                    <label >Answers:</label>
-                    <div ng-repeat="answer in newCard.answers" >
-                        <div class="input-group">
-                            <input type="text" ng-maxlength="40" name="answer" class="form-control" ng-model="answer.text">
-                            <span class="input-group-addon">
-                                <input type="checkbox" ng-model="answer.correct">
-                            </span>
-                        </div>
+    <div class="row" ng-controller="MainController">
+            <div  class="col-md-4">
+                <new-card add-flash-card="addFlashCard(card)"></new-card>
+            </div>
+            <div class="col-md-8" >
+
+                <loader  ng-show="loading"></loader>
+                <category-dropdown current-category="currentCategory"></category-dropdown>
+                <div ng-hide="loading">
+                    <stats></stats>
+
+                    <!--<div style="text-align: center">-->
+                        <!--<button class="category-button" ng-class="{ active: currentCategory === category }" ng-repeat="category in categories" ng-click="getCategoryCards(category)">{{ category }}</button>-->
+                        <!--<button class="category-button" ng-click="resetCategory()">Reset</button>-->
+                    <!--</div>-->
+                    <div ng-repeat="flashCard in flashCards | getCategory : (currentCategory==='Show All'?'':currentCategory)" >
+                        <flash-card flash-card=flashCard></flash-card>
                     </div>
                 </div>
-                <button class="btn btn-primary" ng-click="submitForm()">Submit</button>
-            </form>
-            <div class="alert alert-danger"></div>
-        </div>
-
-        <div ng-controller="MainController">
-            <loader  ng-show="loading"></loader>
-
-            <div ng-hide="loading">
-                <stats></stats>
-                <div style="text-align: center">
-                    <button class="category-button" ng-class="{ active: currentCategory === category }" ng-repeat="category in categories" ng-click="getCategoryCards(category)">{{ category }}</button>
-                    <button class="category-button" ng-click="resetCategory()">Reset</button>
-                </div>
-                <div ng-repeat="flashCard in flashCards | getCategory : currentCategory |orderBy : 'question'" >
-                    <flash-card flash-card=flashCard></flash-card>
-                </div>
             </div>
-        </div>
+
+    </div>
+
 
 </body>
 

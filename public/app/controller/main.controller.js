@@ -12,31 +12,18 @@ app.controller('MainController', function($scope, FlashCardsFactory, ScoreFactor
         });
     };
 
-		$scope.getCards();
-
-    $scope.getCategoryCards = function(category) {
-    	 // FlashCardsFactory.getCategoryCards(category)
-        //.then(function(res) {
-        //    $scope.flashCards = res;
-        //    $scope.currentCategory = category;
-        //}, function(err) {
-        //    console.log(err);
-        //});
-        $scope.currentCategory = category;
-    }
+    $scope.getCards();
 
     $scope.resetCategory = function() {
     	$scope.currentCategory = "";
     	$scope.getCards();
     }
 
-    $scope.categories = [
-        'MongoDB',
-        'Express',
-        'Angular',
-        'Node'
-    ];
+    $scope.currentCategory = "Show All";
 
-    $scope.currentCategory = "";
+    $scope.addFlashCard = function(card){
+        console.log(card)
+        $scope.flashCards.unshift(card);
+    }
 
 });

@@ -1,0 +1,12 @@
+<div class="well" hover-highlight>
+    <div class="page-header"><h1>{{ flashCard.question | uppercase }}</h1></div>
+    <span class="label label-success">{{ flashCard.category }}</span>
+    <ul class="list-group">
+        <li ng-repeat="answer in flashCard.answers" class="list-group-item" ng-click="answerQuestion(answer, flashCard)"><a class="btn btn-info">{{ answer.text }}</a></li>
+    </ul>
+    <h2 class="answer-feedback" ng-class="flashCard.answeredCorrectly ? 'correct' : 'incorrect'" ng-show="flashCard.answered">
+        <span ng-show="flashCard.answeredCorrectly">Yeah, you got it right!</span>
+        <span ng-show="!flashCard.answeredCorrectly">Nope, you got it wrong.</span>
+    </h2>
+
+</div>

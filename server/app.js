@@ -54,5 +54,16 @@ app.get('/cards', function (req, res) {
 });
 
 app.post('/card', function(req, res){
-    console.log(req.body);
+
+    //var newCard = new FlashCardModel(req.body);
+    //newCard.save().then(function(doc){
+    //    res.json(doc);
+    //}, function(err){
+    //    res.json(err);
+    //});
+    FlashCardModel.create(req.body).then(function(doc){
+        res.json(doc);
+    }, function(err){
+        console.log(err);
+    });
 });

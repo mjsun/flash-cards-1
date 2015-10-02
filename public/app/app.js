@@ -1,4 +1,4 @@
-var app = angular.module('flashCards', []);
+var app = angular.module('flashCards', ['ngAnimate', 'ui.bootstrap']);
 
 app.factory('FlashCardsFactory', function ($http) {
     return {
