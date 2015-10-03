@@ -67,3 +67,23 @@ app.post('/card', function(req, res){
         console.log(err);
     });
 });
+
+app.put('/card', function(req, res){
+    console.log(req.body);
+   FlashCardModel.findOne(req.body._id, function(err, doc){
+       for(var key in req.body){
+           doc[key] = req.body[key];
+       }
+       doc.save().then(function(data){
+           res.json(data);
+       });
+   });
+});
+
+app.delete('/card/:id', function(req, res){
+    FlashCardModel.remove({_id: req.params.id}).then(function(doc){
+        res.json(doc);
+    });
+});
+
+

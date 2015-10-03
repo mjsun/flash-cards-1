@@ -17,13 +17,20 @@ app.controller('MainController', function($scope, FlashCardsFactory, ScoreFactor
     $scope.resetCategory = function() {
     	$scope.currentCategory = "";
     	$scope.getCards();
-    }
+    };
 
     $scope.currentCategory = "Show All";
 
     $scope.addFlashCard = function(card){
-        console.log(card)
         $scope.flashCards.unshift(card);
-    }
+    };
+
+    $scope.deleteFlashCard = function(card){
+       for(var i=0; i<$scope.flashCards.length; i++){
+           if($scope.flashCards[i]._id === card._id){
+               $scope.flashCards.splice(i,1);
+           }
+       }
+    };
 
 });

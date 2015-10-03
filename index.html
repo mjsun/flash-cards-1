@@ -7,14 +7,14 @@
 
     <link rel="stylesheet" type="text/css" href="css/reset.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
     <script src="vendor/js/angular.js"></script>
     <script src="vendor/js/angular-animate.js"></script>
     <script src="vendor/js/ui-bootstrap.min.js"></script>
 
-
     <script src="app/app.js"></script>
-
 
     <script src="app/controller/main.controller.js"></script>
     <script src="app/controller/newcard.controller.js"></script>
@@ -27,7 +27,7 @@
     <script src="app/directive/category/category.js"></script>
     <script src="app/directive/new-card/new-card.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="vendor/css/bootstrap.min.css" />
+    <script src="app/factory/flash-card.js"></script>
 
 </head>
 
@@ -42,13 +42,8 @@
                 <category-dropdown current-category="currentCategory"></category-dropdown>
                 <div ng-hide="loading">
                     <stats></stats>
-
-                    <!--<div style="text-align: center">-->
-                        <!--<button class="category-button" ng-class="{ active: currentCategory === category }" ng-repeat="category in categories" ng-click="getCategoryCards(category)">{{ category }}</button>-->
-                        <!--<button class="category-button" ng-click="resetCategory()">Reset</button>-->
-                    <!--</div>-->
                     <div ng-repeat="flashCard in flashCards | getCategory : (currentCategory==='Show All'?'':currentCategory)" >
-                        <flash-card flash-card=flashCard></flash-card>
+                        <flash-card flash-card="flashCard" delete-flash-card="deleteFlashCard(card)"></flash-card>
                     </div>
                 </div>
             </div>

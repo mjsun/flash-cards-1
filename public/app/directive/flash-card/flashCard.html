@@ -1,4 +1,8 @@
 <div class="well" hover-highlight>
+    <div class="pull-right">
+        <span class="btn btn-primary" ng-click="editCurrent(flashCard)"><i class="fa fa-pencil"></i></span>
+        <span class="btn btn-danger" ng-click="removeCurrent(flashCard)"><i class="fa fa-trash-o"></i></span>
+    </div>
     <div class="page-header"><h1>{{ flashCard.question | uppercase }}</h1></div>
     <span class="label label-success">{{ flashCard.category }}</span>
     <ul class="list-group">

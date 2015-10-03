@@ -1,20 +1,6 @@
 var app = angular.module('flashCards', ['ngAnimate', 'ui.bootstrap']);
 
-app.factory('FlashCardsFactory', function ($http) {
-    return {
-        getFlashCards: function () {
-            return $http.get('/cards').then(function (response) {
-                return response.data;
-            });
-        },
 
-        getCategoryCards: function(category) {
-            return $http.get('/cards?category=' + category).then(function (response) {
-                return response.data;
-            });
-        }
-    };
-});
 
 app.factory('ScoreFactory', function () {
 
