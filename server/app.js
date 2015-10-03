@@ -53,6 +53,14 @@ app.get('/cards', function (req, res) {
 
 });
 
+app.get('/card/:id', function(req, res, next) {
+  FlashCardModel.findById(req.params.id)
+    .then(function(data) {
+      res.json(data);
+    })
+    .catch(console.log)
+})
+
 app.post('/card', function(req, res){
 
     //var newCard = new FlashCardModel(req.body);

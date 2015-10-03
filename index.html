@@ -13,12 +13,14 @@
     <script src="vendor/js/angular.js"></script>
     <script src="vendor/js/angular-animate.js"></script>
     <script src="vendor/js/ui-bootstrap.min.js"></script>
+    <script src="vendor/js/ui-router.js"></script>
 
     <script src="app/app.js"></script>
 
     <script src="app/controller/main.controller.js"></script>
     <script src="app/controller/newcard.controller.js"></script>
     <script src="app/controller/stats.controller.js"></script>
+    <script src="app/controller/flashcard.controller.js"></script>
 
     <script src="app/directive/loader/loader.js"></script>
     <script src="app/directive/stats/stats.js"></script>
@@ -32,25 +34,35 @@
 </head>
 
 <body class="container" ng-app="flashCards" >
-    <div class="row" ng-controller="MainController">
-            <div  class="col-md-4">
-                <new-card add-flash-card="addFlashCard(card)"></new-card>
-            </div>
-            <div class="col-md-8" >
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" ui-sref="home">Home</a>
+        </div>
 
-                <loader  ng-show="loading"></loader>
-                <category-dropdown current-category="currentCategory"></category-dropdown>
-                <div ng-hide="loading">
-                    <stats></stats>
-                    <div ng-repeat="flashCard in flashCards | getCategory : (currentCategory==='Show All'?'':currentCategory)" >
-                        <flash-card flash-card="flashCard" delete-flash-card="deleteFlashCard(card)"></flash-card>
-                    </div>
-                </div>
-            </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a ui-sref="flashcards">Flash Cards</a></li>
+            <li><a ui-sref="addcard">Add</a></li>
+            <li><a href="#">MongoDB</a></li>
+            <li><a href="#">Express</a></li>
+            <li><a href="#">Angular</a></li>
+            <li><a href="#">Node</a></li>
+          </ul>
+          
 
-    </div>
-
-
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <ui-view></ui-view>
 </body>
 
 </html>

@@ -29,8 +29,8 @@
                 <div class="alert alert-danger" ng-show="answerForm.answer.$dirty && answerForm.answer.$error.maxlength">Answer is too long</div>
             </div>
         </div>
-        <button class="btn btn-primary" ng-hide="newCard._id"ng-click="submitForm()" ng-disabled="newCardForm.$invalid === true" >Submit</button>
-        <button class="btn btn-primary" ng-show="newCard._id" ng-click="updateCard()" ng-disabled="newCardForm.$invalid === true" >Update</button>
+        <button class="btn btn-primary" ng-hide="newCard._id" ng-click="addOrUpdate({ card: newCard })" ng-disabled="newCardForm.$invalid === true" >Submit</button>
+        <button class="btn btn-primary" ng-show="newCard._id" ng-click="addOrUpdate({ card: newCard })" ng-disabled="newCardForm.$invalid === true" >Update</button>
     </form>
 </div>
 

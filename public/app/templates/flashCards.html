@@ -1,0 +1,16 @@
+{{flashCards.length}}
+<div class="row">
+        
+        <div class="col-md-12" >
+
+            <loader  ng-show="loading"></loader>
+            <category-dropdown current-category="currentCategory"></category-dropdown>
+            <div ng-hide="loading">
+                <stats></stats>
+                <div ng-repeat="flashCard in flashCards | getCategory : (currentCategory==='Show All'?'':currentCategory)" >
+                    <flash-card flash-card="flashCard" delete-flash-card="deleteFlashCard(card)"></flash-card>
+                </div>
+            </div>
+        </div>
+
+</div>
